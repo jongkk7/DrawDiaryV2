@@ -44,12 +44,9 @@ jobs:
           restore-keys: |
               ${{ runner.os }}-gradle-
 
-#      - name: Install NDK
-#        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
-
-#       # build
-#       - name: Run... (debug)
-#         run: bash ./gradlew assembleDebug
+       # build
+       - name: Run... (debug)
+         run: bash ./gradlew assembleDebug
 #      - name: Run... (release)
 #        run: bash ./gradlew assembleRelease --stacktrace
 
@@ -58,13 +55,13 @@ jobs:
 #        run: ./gradlew lint
 
         # detekt ( 정적 분석기 )
-#       - name: detekt...
-#         run: ./gradlew detekt
-#       - name: upload detekt result
-#         uses: actions/upload-artifact@v1
-#         with:
-#           name: detekt_result
-#           path: app/build/reports/detekt
+       - name: detekt...
+         run: ./gradlew detekt
+       - name: upload detekt result
+         uses: actions/upload-artifact@v1
+         with:
+           name: detekt_result
+           path: app/build/reports/detekt
 
         # checkstyle
 #      - name: check style...
