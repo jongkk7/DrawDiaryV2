@@ -1,0 +1,93 @@
+name: "CI&CD"
+
+on:
+#  workflow_dispatch:    # Github Action에서 수동으로 워크플로우 실행 가능
+  push:
+    branches: [ master ]
+
+jobs:
+  info:
+    name: 작업 정보
+    runs-on: ubuntu-latest
+    steps:
+        - name: 작업 정보
+          run: |
+            echo "🎉🎉🎉🎉🎉🎉🎉"
+            echo "repo : ${{ github.repository }}"
+            echo "branch : ${{ github.ref }}"
+            echo "event : << ${{ github.event_name }} >>"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+#      - name: Gradle Wrapper Validation
+#        uses: gradle/wrapper-validation-action@v1
+        # JDK Settings
+      - name: Setup JDK1.8...
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          check-latest: true
+      - name: Setup JDK11...
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+          check-latest: true
+      - name: cache gradle
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+              ${{ runner.os }}-gradle-
+
+#      - name: Install NDK
+#        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
+
+#       # build
+#       - name: Run... (debug)
+#         run: bash ./gradlew assembleDebug
+#      - name: Run... (release)
+#        run: bash ./gradlew assembleRelease --stacktrace
+
+        # lint ( datekt 로 대체 )
+#      - name: Check lint
+#        run: ./gradlew lint
+
+        # detekt ( 정적 분석기 )
+#       - name: detekt...
+#         run: ./gradlew detekt
+#       - name: upload detekt result
+#         uses: actions/upload-artifact@v1
+#         with:
+#           name: detekt_result
+#           path: app/build/reports/detekt
+
+        # checkstyle
+#      - name: check style...
+#        run: ./gradlew checkstyle
+#      - name: upload checkstyle result
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: checkstyle_result
+#          path: app/build/reports/checkstyle
+
+        # 유닛테스트
+#      - name: Run Unit Tests
+#        run: ./gradlew testDebugUnitTest
+
+#         # APK 파일 업로드
+#       - name: upload APK
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: app_apk.zip
+#           path: |
+#             app/build/outputs/apk/debug/app-debug.apk
+#             app/build/outputs/apk/debug/app-aar.aab
+
+
+
+
+
