@@ -16,6 +16,7 @@ jobs:
             echo "repo : ${{ github.repository }}"
             echo "branch : ${{ github.ref }}"
             echo "event : << ${{ github.event_name }} >>"
+
   build:
     runs-on: ubuntu-latest
     steps:
