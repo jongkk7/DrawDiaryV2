@@ -11,6 +11,15 @@ import com.yjk.draw.data.DrawPoint
 import com.yjk.draw.listener.DrawTouchListener
 import com.yjk.draw.util.DrawHelper
 
+/**
+ * DrawView class
+ *
+ * TODO list --
+ * - history 생성
+ * - redo, undo 추가
+ * - 지우개 추가
+ * - paint 변경
+ */
 class DrawView :
     View {
     constructor(context: Context) : super(context)
