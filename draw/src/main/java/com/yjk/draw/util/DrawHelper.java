@@ -4,12 +4,11 @@ import android.content.res.Resources;
 import android.graphics.ComposePathEffect;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
+import android.graphics.Point;
 
 import androidx.annotation.NonNull;
 
-import com.yjk.draw.data.DrawPoint;
-
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Riccardo Moro on 10/23/2016.
@@ -20,7 +19,7 @@ public class DrawHelper {
     /**
      * Function used to check whenever a list of points is a line or a path to draw
      */
-    public static boolean isAPoint(@NonNull List<DrawPoint> points) {
+    public static boolean isAPoint(@NonNull ArrayList<Point> points) {
         if (points.size() == 0)
             return false;
 
@@ -28,7 +27,7 @@ public class DrawHelper {
             return true;
 
         for (int i = 1; i < points.size(); i++) {
-            if (points.get(i - 1).getX() != points.get(i).getX() || points.get(i - 1).getY() != points.get(i).getY())
+            if (points.get(i - 1).x != points.get(i).x || points.get(i - 1).y != points.get(i).y)
                 return false;
         }
 

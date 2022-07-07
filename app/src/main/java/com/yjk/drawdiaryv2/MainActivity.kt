@@ -16,11 +16,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(mBinding?.root)
 
         initDrawView()
+        setEvent()
     }
 
     private fun initDrawView(){
 //        mBinding.drawView.setOnPath
     }
 
+    private fun setEvent(){
+
+        mBinding?.redo?.setOnClickListener {
+            mBinding?.drawView?.redo()
+        }
+
+        mBinding?.undo?.setOnClickListener {
+            mBinding?.drawView?.undo()
+        }
+    }
 
 }
