@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/logoWidth"
+        android:layout_height="@dimen/logoHeight"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/logoMarginTop"
+        android:background="#ffffff"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/tutorial_imageview"
+        android:layout_width="@dimen/tutorialSize"
+        android:layout_height="@dimen/tutorialSize"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/tutorialMarginTop"
+        android:background="#ffffff"
+        android:src="@drawable/tutorial_image01"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/logo" />
+
+    <TextView
+        android:id="@+id/tutorial_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tutorial_imageview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/tutorialTextMarginTop"
+        android:fontFamily="@font/goyang"
+        android:text="@string/tutorial01"
+        android:textAlignment="center"
+        android:textSize="@dimen/smallTextSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tutorial_imageview" />
+</androidx.constraintlayout.widget.ConstraintLayout>

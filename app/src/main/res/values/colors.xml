@@ -6,7 +6,7 @@
 
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#eeeeee</color>
-    <color name="darkgray">#aaaaaa</color>
+    <color name="darkgray">#666666</color>
     <color name="black">#FF000000</color>
 
     <!-- color image view -->
@@ -22,4 +22,5 @@
     <color name="color09">#393884</color>
     <color name="color10">#000000</color>
     <color name="color11">#FFFFFF</color>
+
 </resources>

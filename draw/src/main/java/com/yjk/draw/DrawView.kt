@@ -3,19 +3,21 @@ package com.yjk.draw
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import androidx.annotation.ColorInt
 import com.yjk.draw.data.DrawConfig
 import com.yjk.draw.data.HistoryPath
 import com.yjk.draw.listener.DrawTouchListener
 import com.yjk.draw.util.DrawHelper
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * DrawView class
  *
  * TODO list --
- * - history 생성
- * - redo, undo 추가
  * - 지우개 추가
  * - paint 변경
  */
@@ -28,7 +30,8 @@ class DrawView :
         attrs,
         defStyleAttr
     )
-    val tag = "### ${javaClass.simpleName}"
+
+    val TAG = "### ${javaClass.simpleName}"
 
     var config = DrawConfig()
 
@@ -43,6 +46,9 @@ class DrawView :
 
     val paths = ArrayList<HistoryPath>()
     val cancelPathList = ArrayList<HistoryPath>()
+
+    var isCleaning = false
+    var mColor = Color.BLACK // 지우개로 변경 시 현재 컬러값 저장
 
     init {
         initPaints()
@@ -101,9 +107,9 @@ class DrawView :
             }
         }
 
-        if(currentPath == null){
+        if (currentPath == null) {
             currentPath = Path()
-        }else {
+        } else {
             currentPath?.rewind()
         }
 
@@ -137,16 +143,16 @@ class DrawView :
     }
 
 
-    fun redo(){
-        if (cancelPathList.size > 0){
+    fun redo() {
+        if (cancelPathList.size > 0) {
             paths.add(cancelPathList[cancelPathList.size - 1])
             cancelPathList.removeAt(cancelPathList.size - 1)
             invalidate()
         }
     }
 
-    fun undo(){
-        if(paths.size > 0){
+    fun undo() {
+        if (paths.size > 0) {
             finishPath = true
 
             cancelPathList.add(paths[paths.size - 1])
@@ -154,7 +160,76 @@ class DrawView :
             invalidate()
         }
     }
-    
+
+    /**
+     * clear
+     * 화면을 모두 지우지만 history는 남겨둠 ( redo로 복구 가능 )
+     */
+    fun clear() {
+
+        if (isCleaning) {
+            return
+        }
+
+        Thread {
+            Timer().schedule(object : TimerTask() {
+                override fun run() {
+                    undo()
+                    if (paths.size == 0) {
+                        cancel()
+                        isCleaning = false
+                    }
+                }
+            }, 0, 50)
+        }.start()
+
+    }
+
+    /**
+     * 그림, 기록 모두 삭제
+     */
+    fun clearAll() {
+        paths.clear()
+        cancelPathList.clear()
+        invalidate()
+    }
+
+    /**
+     * paint 설정
+     */
+    fun setColor(@ColorInt color: Int) {
+        config.paintColor = color
+        setPaint()
+    }
+
+    fun setPenSize(size: Float) {
+        config.paintWidth = size
+        setPaint()
+    }
+
+    fun setAlpha(alpha: Int) {
+        config.paintAlpha = alpha
+        setPaint()
+    }
+
+    // 팬
+    fun setPen(){
+        config.paintColor = mColor
+    }
+
+    // 지우개
+    fun setEraser(){
+        mColor = config.paintColor
+        config.paintColor = Color.WHITE
+    }
+
+    private fun setPaint() {
+        currentPaint.setColor(config.paintColor)
+        currentPaint.setAlpha(config.paintAlpha)
+        currentPaint.setStrokeWidth(config.paintWidth)
+        DrawHelper.setupStrokePaint(currentPaint)
+    }
+
     private fun createAndCopyColorAndAlphaForFillPaint(from: Paint, copyWidth: Boolean): Paint {
         val paint = DrawHelper.createPaint()
         DrawHelper.setupFillPaint(paint)

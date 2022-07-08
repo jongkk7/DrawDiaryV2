@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/logoWidth"
+        android:layout_height="@dimen/logoHeight"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tutorial_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/goyang"
+        android:text="@string/tutorial03"
+        android:textAlignment="center"
+        android:textSize="@dimen/smallTextSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/tutorial_start_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/tutorial_arrow_icon" />
+
+    <Button
+        android:id="@+id/tutorial_start_button"
+        android:layout_width="@dimen/startButtonWidth"
+        android:layout_height="@dimen/startButtonHeight"
+        android:layout_marginBottom="@dimen/startButtonMarginBottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/tutorial_start_button"
+        android:fontFamily="@font/notoserifcjkkr_medium" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

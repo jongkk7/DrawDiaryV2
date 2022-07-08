@@ -1,5 +1,6 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">그림일기</string>
+    <string name="company_name" tools:ignore="ExtraTranslation"><![CDATA[YJK & HNH]]></string>
 
     <!-- tutorial -->
     <string name="tutorial01">일기 쓰던 그때 그시절 나의 그림\n못그려도 이쁜 나의 그림을 담아보세요.</string>

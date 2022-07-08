@@ -9,15 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DrawDiaryV2">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".view.intro.ActivityIntro"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".view.intro.tutorial.ActivityTutorial"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.main.ActivityMain"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.add.ActivityAddDiary"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
