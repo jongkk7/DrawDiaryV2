@@ -13,14 +13,14 @@ class YLog {
                 val stack = Throwable().fillInStackTrace()
                 val trace = stack.stackTrace
                 TAG = if (trace != null) {
-                    val className = trace[0].className
-                    val methodName = trace[0].methodName
-                    "[$className] $methodName"
+                    val className = trace[2].fileName
+                    val methodName = trace[2].methodName
+                    "[###$className] $methodName"
                 } else {
                     "###YLOG"
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
+                TAG = "###YLOG"
             }
             return TAG
         }

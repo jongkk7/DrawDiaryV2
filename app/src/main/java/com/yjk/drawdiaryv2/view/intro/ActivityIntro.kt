@@ -42,7 +42,7 @@ class ActivityIntro : AppCompatActivity() {
             Handler().postDelayed({
                 startActivity(Intent(this, ActivityMain::class.java))
                 finish()
-            }, 2000)
+            }, 200)
         }else {
             Handler().postDelayed({
                 startActivity(Intent(this, ActivityTutorial::class.java))

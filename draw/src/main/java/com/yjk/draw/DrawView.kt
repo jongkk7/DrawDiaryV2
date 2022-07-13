@@ -35,6 +35,13 @@ class DrawView :
 
     var config = DrawConfig()
 
+    companion object {
+        val PEN_STYLE = 1
+        val CRAYON_STYLE = 2
+        val ERASER_STYLE = 3
+        val COLOR_STYLE = 4
+    }
+
     var canvas: Canvas? = null
     var oldBitmap: Bitmap? = null
 
@@ -48,7 +55,8 @@ class DrawView :
     val cancelPathList = ArrayList<HistoryPath>()
 
     var isCleaning = false
-    var mColor = Color.BLACK // 지우개로 변경 시 현재 컬러값 저장
+    var mColor = config.DEFAULT_COLOR // 지우개로 변경 시 현재 컬러값 저장
+    var mCurrentPenStyle = PEN_STYLE
 
     init {
         initPaints()
@@ -144,19 +152,19 @@ class DrawView :
 
 
     fun redo() {
-        if (cancelPathList.size > 0) {
-            paths.add(cancelPathList[cancelPathList.size - 1])
-            cancelPathList.removeAt(cancelPathList.size - 1)
-            invalidate()
-        }
-    }
-
-    fun undo() {
         if (paths.size > 0) {
             finishPath = true
 
             cancelPathList.add(paths[paths.size - 1])
             paths.removeAt(paths.size - 1)
+            invalidate()
+        }
+    }
+
+    fun undo() {
+        if (cancelPathList.size > 0) {
+            paths.add(cancelPathList[cancelPathList.size - 1])
+            cancelPathList.removeAt(cancelPathList.size - 1)
             invalidate()
         }
     }
@@ -198,35 +206,55 @@ class DrawView :
      * paint 설정
      */
     fun setColor(@ColorInt color: Int) {
-        config.paintColor = color
+        if(mCurrentPenStyle == ERASER_STYLE) {
+            config.eraserColor = color
+        }else {
+            config.paintColor = color
+            mColor = color
+        }
         setPaint()
     }
 
     fun setPenSize(size: Float) {
-        config.paintWidth = size
+        if(mCurrentPenStyle == ERASER_STYLE){
+            config.eraserWidth = size
+        }else {
+            config.paintWidth = size
+        }
         setPaint()
     }
 
     fun setAlpha(alpha: Int) {
-        config.paintAlpha = alpha
+        if(mCurrentPenStyle == ERASER_STYLE) {
+            config.eraserAlpha = alpha
+        }else {
+            config.paintAlpha = alpha
+        }
         setPaint()
     }
 
     // 팬
-    fun setPen(){
-        config.paintColor = mColor
+    fun setPen(penStyle: Int) {
+        mCurrentPenStyle = penStyle
+        setPaint()
     }
 
     // 지우개
-    fun setEraser(){
+    fun setEraser() {
         mColor = config.paintColor
         config.paintColor = Color.WHITE
     }
 
     private fun setPaint() {
-        currentPaint.setColor(config.paintColor)
-        currentPaint.setAlpha(config.paintAlpha)
-        currentPaint.setStrokeWidth(config.paintWidth)
+        if(mCurrentPenStyle == ERASER_STYLE){
+            currentPaint.color = config.eraserColor
+            currentPaint.alpha = config.eraserAlpha
+            currentPaint.strokeWidth = config.eraserWidth
+        }else {
+            currentPaint.color = config.paintColor
+            currentPaint.alpha = config.paintAlpha
+            currentPaint.strokeWidth = config.paintWidth
+        }
         DrawHelper.setupStrokePaint(currentPaint)
     }
 

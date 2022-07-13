@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_edittext"
+        android:focusable="true"
+        android:fontFamily="@font/notoserifcjkkr_medium"
+        android:hint="내용을 적어주세요.(최대 20글자)"
+        android:inputType="textMultiLine"
+        android:maxHeight="300dp"
+        android:maxLength="20"
+        android:textSize="@dimen/smallTextSize">
+
+        <requestFocus />
+    </EditText>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:background="#00FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/addButton"
+            android:textColor="#666666"
+            android:fontFamily="@font/notoserifcjkkr_medium"
+            android:text="취소" />
+
+        <Button
+            android:id="@+id/addButton"
+            android:background="#00FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/notoserifcjkkr_medium"
+            android:text="등록" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+

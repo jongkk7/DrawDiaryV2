@@ -12,6 +12,10 @@ class DrawConfig {
     var paintWidth = DEFAULT_PEN_SIZE
     var paintAlpha = DEFAULT_ALPHA
 
+    var eraserColor = Color.parseColor("#FFFFFF")
+    var eraserWidth = DEFAULT_PEN_SIZE
+    var eraserAlpha = DEFAULT_ALPHA
+
     companion object {
         val STYLE_PEN = 0
         val STYLE_CRAYON = 1

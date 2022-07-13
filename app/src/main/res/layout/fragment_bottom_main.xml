@@ -18,7 +18,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             style="@style/MySeekBar"
-            android:min="1"
+            android:min="4"
             android:max="50"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
@@ -105,10 +105,10 @@
 
             <ImageView
                 android:id="@+id/bottom_redo_button"
-                android:background="@drawable/draw_before_icon"
-                android:layout_alignParentBottom="true"
                 android:layout_width="@dimen/penImageSize"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/draw_before_icon" />
 
         </RelativeLayout>
 

@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.DrawDiaryV2">
 
@@ -19,12 +19,25 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.intro.tutorial.ActivityTutorial"
+        <activity
+            android:name=".view.intro.tutorial.ActivityTutorial"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.main.ActivityMain"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.add.ActivityAddDiary"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.main.ActivityMain"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.add.ActivityAddDiary"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_path" />
+        </provider>
     </application>
 
 </manifest>

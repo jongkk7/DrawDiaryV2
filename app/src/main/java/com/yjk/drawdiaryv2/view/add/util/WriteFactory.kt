@@ -14,7 +14,7 @@ import com.yjk.drawdiaryv2.common.YLog
 
 class WriteFactory {
 
-    private val textSize = 20
+    private val textSize = 26
     private var textViews: Array<TextView?> = arrayOfNulls<TextView>(20)
 
     /**
